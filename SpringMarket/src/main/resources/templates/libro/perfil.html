@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Perfil</title>
+<!-- Required meta tags -->
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="ISO-8859-1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header"
+th:content="${_csrf.headerName}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<script th:src="@{/js/jquery-3.5.0.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<style type="text/css">
+		.modulo {
+			width: 250px;
+		}
+		
+		.foto {
+			position: relative;
+			width: 180px;
+			height: 180px;
+			float: left
+		}
+		
+		.overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0);
+			transition: background 0.5s ease;
+		}
+		
+		.foto:hover .overlay {
+			display: block;
+			background: rgba(0, 0, 0, .3);
+		}
+		
+		.foto-perfil {
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			margin-top: 15px;
+			margin-left: 15px;
+		}
+		
+		.title {
+			position: absolute;
+			width: 500px;
+			left: 0;
+			top: 120px;
+			font-weight: 700;
+			font-size: 30px;
+			text-align: center;
+			text-transform: uppercase;
+			color: white;
+			z-index: 1;
+			transition: top .5s ease;
+		}
+		
+		.foto:hover .title {
+			top: 90px;
+		}
+		
+		.button {
+			position: absolute;
+			width: 175px;
+			left: 0;
+			top: 50px;
+			text-align: center;
+			opacity: 0;
+			transition: opacity .35s ease;
+		}
+		
+		.button a {
+			width: 200px;
+			padding: 12px 48px;
+			text-align: center;
+			color: white;
+			border: solid 2px white;
+			z-index: 1;
+		}
+		
+		.foto:hover .button {
+			opacity: 1;
+		}
+		
+		#main_wrapper {
+			width: 900px;
+			margin: auto;
+		}
+		
+		.grid {
+			display: grid;
+			grid-template-areas: "perfil " "email " "modulo ";
+		}
+		
+		.anadir {
+			position: relative;
+			left: 44%;
+		}
+		
+		.anadir_email {
+			height: 100px;
+		}
+		
+		.anadir_email h5 {
+			margin-top: 10px;
+		}
+		
+		.input_email {
+			width: 500px;
+		}
+	</style>
+</head>
+<body>
+
+		
+		
+	<nav th:replace="fragments/header_loader"></nav>
+	
+	<div class="foto" th:if="${imagen != null}">
+				<img class="foto-perfil"
+					th:src="@{/imagenes/{idLibro}(idLibro=${libro.idLibro})}">
+				<div class="overlay"></div>
+				<div class="button">
+					<a href="#"
+						th:href="@{/imagenes/cargar/{idLibro}(idLibro=${libro.idLibro})}">
+						Editar foto </a>
+				</div>
+				</a>
+			</div>
+			<div class="foto" th:if="${imagen == null}">
+				<img class="foto-perfil" th:src="@{/images/libroincog.jpg}">
+				<div class="overlay"></div>
+				<div class="button">
+					<a href="#"
+						th:href="@{/imagenes/cargar/{idLibro}(idLibro=${libro.idLibro})}">
+						Editar foto </a>
+				</div>
+				</a>
+			</div>
+
+	<h4 class="display-1" th:text="${libro.titulo}"></h4>
+	<input type="hidden" id="idLibro" th:value="${libro.idLibro}">
+					<div>
+						<b>Titulo:</b> <span th:text="${libro.titulo}"></span>
+					</div>
+					<div>
+						<b>Autor:</b> <span th:text="${libro.autor}"></span>
+					</div>
+					<div>
+						<b>Precio</b> <span th:text="${libro.precio}"></span>
+				</div>
+				
+				<form action="#" th:action="@{/carro/aniadir}" th:method="post">
+
+					<input id=idLibro name="idLibro" type="hidden" th:value="${libro.idLibro}">
+					
+					<input type="submit" class="btn btn-primary" value="Anadir Carro">
+				</form>
+					
+				</tbody>
+			</table>
+				
+				
+	<div th:if="${session.idUsuario != null}">
+		<div id="preguntagrid">
+			<textarea rows="3" cols="100" name="pregunta" id="pregunta"
+				required></textarea>
+		<input type="button" class="btn btn-success" id="botonpregunta"
+				value="Haz tu pregunta" />
+		</div>
+	</div>
+	
+	<table name="tablaqanda" id="tablaqanda" class="table">
+				<thead>
+					<tr>
+						<th style="text-align: center;" scope="col">Fecha</th>
+						<th style="text-align: center;" scope="col">Usuario</th>
+						<th style="text-align: center;" scope="col">Preguntas/Respuestas</th>
+						<th style="text-align: center;" scope="col">Opciones</th>
+					</tr>
+				</thead>	
+				<tbody th:each="pregunta: ${libro.getPreguntas()}">
+					<tr  id="filaPregunta">
+						<td th:text="${pregunta.fechaPregunta}" />
+						<td th:text="${pregunta.cliente.nombre}" />
+						<td th:text="${pregunta.textoPregunta}" />
+					</tr>
+				
+				</tbody>
+				
+	</table>
+	
+	
+	<script type="text/javascript" th:src="@{/js/funciones.js}"></script>
+
+	
+</body>
+</html>

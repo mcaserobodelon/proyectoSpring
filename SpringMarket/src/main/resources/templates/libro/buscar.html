@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Buscar</title>
+<!-- Required meta tags -->
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<script th:src="@{/js/jquery-3.5.0.js}"></script>
+
+</head>
+
+<body>
+	Los resultados con el titulo: <p th:text=${titulo}></p> 
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Titulo</th>
+				<th scope="col">Autor</th>
+				<th scope="col">Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${libros.empty}">
+				<td colspan="2">No existen libros en el sistema con ese titulo</td>
+			</tr>
+			<tr th:each="libro : ${libros}">
+				<td><span th:text="${libro.titulo}"> Titulo </span></td>
+				
+				<td><span th:text="${libro.autor}"> Autor </span></td>
+					
+				<td><span th:text="${libro.precio}"> Precio </span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Perfil Cliente</title>
+</head>
+<body>
+	<nav th:replace="fragments/header_loader"></nav>
+
+
+	<h4 class="display-1">Lista de Compra</h4>
+	<input type="hidden" id="idCliente" th:value="${cliente.idCliente}">
+					<div>
+						<b>Nombre:</b> <span th:text="${cliente.nombre}"></span>
+					</div>
+					<div>
+						<b>Apellidos:</b> <span th:text="${cliente.apellidos}"></span>
+					</div>
+					<div>
+						<b>Email:</b> <span th:text="${cliente.email}"></span>
+					</div>
+					<div>
+						<b>Fecha:</b> <span th:text="${cliente.fechaNacimiento}"></span>
+					</div>
+					
+					<a  th:href="@{/cliente/listacompra}" role="button">Listar compras</a>
+										
+					<div>
+						<form th:action="@{/cliente/logout}" method="post">
+							<input type="submit" value="LogOut" />
+						</form>
+					</div>
+					
+			
+			
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Lista de carro</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script th:src="@{/js/jquery-3.5.0.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/typeahead.bundle.min.js}"></script>
+<link rel="stylesheet"
+	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+</head>
+<body>
+
+	<nav th:replace="fragments/header_loader"></nav>
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Lista de Carro</h1>
+  
+  <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Titulo</th>
+				<th scope="col">Cantidad</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${arrCarro.empty}">
+				<td colspan="2">No existen ningun libro en la cesta</td>
+			</tr>
+			<tr th:each="carro : ${arrCarro}">
+				<td><span th:text="${carro.idLibro}"> ID </span></td>
+				<td><span th:text="${carro.titulo}"> ID </span></td>
+				<td><span th:text="${carro.cantidad}"> ID </span></td>	
+			</tr>
+		</tbody>
+	</table>
+	
+	<a class="btn btn-primary btn-lg" th:href="@{/libro/lista}" role="button">Seguir Comprando</a>
+	
+	<a class="btn btn-primary btn-lg" th:href="@{/carro/comprar}" role="button">Pagar</a>
+ 
+</div>
+
+</body>
+</html>

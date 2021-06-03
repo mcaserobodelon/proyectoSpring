@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Compras cliente</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script th:src="@{/js/jquery-3.5.0.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/typeahead.bundle.min.js}"></script>
+<link rel="stylesheet"
+	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+</head>
+<body>
+
+	<nav th:replace="fragments/header_loader"></nav>
+	
+	<h4 class="display-1">Lista de Compra</h4>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">IdCompra</th>
+				<th scope="col">Perfil</th>
+				<th scope="col">Devolver</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${compras.empty}">
+				<td colspan="2">ERROR</td>
+			</tr>
+			<tr th:each="compra : ${compras}">
+				<td><span th:text="${compra.idCompra}"> idCompra </span></td>
+				
+				<td><a th:href="@{/carro/{id}(id=${compra.idCompra})}"
+					class="btn btn-primary"><i class="fas fa-user"></i></a></td>
+				
+				<td><a th:href="@{/carro/borrar/{id}(id=${compra.idCompra})}"
+					class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+				
+				
+			</tr>
+		</tbody>
+	</table>
+    
+
+
+</body>
+</html>
