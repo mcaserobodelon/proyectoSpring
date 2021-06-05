@@ -35,8 +35,21 @@ function agregarPregunta() {
 		success: function(response) {
 			// Se recoge la pregunta del controlador y se obtienen sus cosas
 			var pfecha = response.fechaPregunta;
-			var pusuario = response.nombreUsuario;
+			var pusuario = response.nombreCliente;
 			var ptexto = response.textoPregunta;
+
+            // Se crean los nodos para la tabla
+			var filaPregunta = document.createElement("tr");
+			filaPregunta.setAttribute("id", "filaPregunta");
+			var tdpfecha = document.createElement("td");
+			var tdpusuario = document.createElement("td");
+			var tdptexto = document.createElement("td")
+			var tdpopciones1 = document.createElement("td");
+
+            // Se asignan los datos a los nodos
+			tdpfecha.textContent = `${pfecha}`;
+			tdpusuario.textContent = `${pusuario}`;
+			tdptexto.textContent = `${ptexto}`;
 		
 		},	
 		error: function(xhr, status, error) {

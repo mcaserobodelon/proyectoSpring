@@ -17,6 +17,7 @@ th:content="${_csrf.headerName}" />
 	crossorigin="anonymous">
 <script th:src="@{/js/jquery-3.5.0.js}"></script>
 <script th:src="@{/js/jquery-ui.min.js}"></script>
+
 <style type="text/css">
 		.modulo {
 			width: 250px;
@@ -122,9 +123,6 @@ th:content="${_csrf.headerName}" />
 	</style>
 </head>
 <body>
-
-		
-		
 	<nav th:replace="fragments/header_loader"></nav>
 	
 	<div class="foto" th:if="${imagen != null}">
@@ -195,6 +193,12 @@ th:content="${_csrf.headerName}" />
 						<td th:text="${pregunta.fechaPregunta}" />
 						<td th:text="${pregunta.cliente.nombre}" />
 						<td th:text="${pregunta.textoPregunta}" />
+						<td>
+<!-- 							<div th:if="${session.idUsuario != null}"> -->
+								<button id="botonBorrarPregunta" class="btn btn-outline-danger">Borra
+									esta pregunta</button>
+<!-- 							</div> -->
+						</td>
 					</tr>
 				
 				</tbody>
@@ -202,7 +206,8 @@ th:content="${_csrf.headerName}" />
 	</table>
 	
 	
-	<script type="text/javascript" th:src="@{/js/funciones.js}"></script>
+	
+	
 
 	
 </body>
