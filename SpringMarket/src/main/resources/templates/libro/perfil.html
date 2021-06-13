@@ -188,7 +188,7 @@ th:content="${_csrf.headerName}" />
 						<th style="text-align: center;" scope="col">Opciones</th>
 					</tr>
 				</thead>	
-				<tbody th:each="pregunta: ${libro.getPreguntas()}">
+				<tbody th:each="pregunta: ${libro.getPreguntas()}" id="tbody">
 					<tr  id="filaPregunta">
 						<td th:text="${pregunta.fechaPregunta}" />
 						<td th:text="${pregunta.cliente.nombre}" />

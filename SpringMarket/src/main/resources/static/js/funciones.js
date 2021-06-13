@@ -39,17 +39,27 @@ function agregarPregunta() {
 			var ptexto = response.textoPregunta;
 
             // Se crean los nodos para la tabla
-			var filaPregunta = document.createElement("tr");
-			filaPregunta.setAttribute("id", "filaPregunta");
-			var tdpfecha = document.createElement("td");
-			var tdpusuario = document.createElement("td");
-			var tdptexto = document.createElement("td")
-			var tdpopciones1 = document.createElement("td");
+			var tbody = document.getElementById('tablaqanda').getElementsByTagName('tbody')[0];
+			var row = tbody.insertRow();
+			var cell1 = row.insertCell(0);
+  			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
 
             // Se asignan los datos a los nodos
-			tdpfecha.textContent = `${pfecha}`;
-			tdpusuario.textContent = `${pusuario}`;
-			tdptexto.textContent = `${ptexto}`;
+			cell1.innerHTML = pfecha;
+  			cell2.innerHTML = pusuario;
+			cell3.innerHTML = ptexto;
+			
+			//Creamos el botón para borrar la pregunta
+			var botonBorrarPregunta = document.createElement("button");
+			botonBorrarPregunta.setAttribute("id", "botonBorrarPregunta");
+			botonBorrarPregunta.innerHTML = "Borra esta pregunta";
+			botonBorrarPregunta.classList.add("btn");
+			botonBorrarPregunta.classList.add("btn-outline-danger");
+			
+			tdpopciones1.appendChild(botonBorrarPregunta);
+			
 		
 		},	
 		error: function(xhr, status, error) {
