@@ -39,8 +39,8 @@ function agregarPregunta() {
 			var ptexto = response.textoPregunta;
 
             // Se crean los nodos para la tabla
-			var tbody = document.getElementById('tablaqanda').getElementsByTagName('tbody')[0];
-			var row = tbody.insertRow();
+			var table = document.getElementById("tablaqanda");
+  			var row = table.insertRow();
 			var cell1 = row.insertCell(0);
   			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
